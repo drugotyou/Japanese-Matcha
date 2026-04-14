@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Japanese Tea Product Catalogue</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #f5f0ea; color: #2d2d2d; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, #1a3a2a 0%, #2d5a3d 50%, #1a3a2a 100%);
+    color: #fff;
+    text-align: center;
+    padding: 72px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url('https://pplx-res.cloudinary.com/image/upload/pplx_search_images/65daca117204434d1b12933731e0cd7eb53bd275.jpg') center/cover no-repeat;
+    opacity: 0.12;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 50px;
+    padding: 6px 18px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    font-size: 15px;
+    opacity: 0.75;
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+    line-height: 1.7;
+  }
+  .hero-divider {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, #a8c57a, #d4a843);
+    margin: 22px auto 0;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 56px 0 40px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: #1a3a2a;
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-size: 13.5px;
+    color: #6b7c6a;
+    margin-bottom: 34px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── PRODUCT CARDS ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transition: transform .25s, box-shadow .25s;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
+  .card-img {
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+  }
+  .card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+  }
+  .card:hover .card-img img { transform: scale(1.06); }
+  .card-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,58,42,0.55) 0%, transparent 55%);
+  }
+  .card-category {
+    position: absolute;
+    bottom: 10px; left: 14px;
+    background: rgba(255,255,255,0.92);
+    color: #1a3a2a;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 50px;
+  }
+  .card-body { padding: 18px 18px 20px; }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1a3a2a;
+    margin-bottom: 12px;
+  }
+  .card-meta { display: flex; flex-direction: column; gap: 7px; }
+  .meta-row {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 12.5px; color: #4a5a49;
+  }
+  .meta-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+  .meta-label { font-weight: 600; color: #2d4a2e; min-width: 52px; }
+  .badge-eu {
+    display: inline-block;
+    background: #eaf3eb; color: #2d6a3f;
+    border: 1px solid #b8dfc1;
+    font-size: 10.5px; font-weight: 600;
+    padding: 2px 9px; border-radius: 50px;
+    margin-top: 6px;
+  }
+  .badge-allergen {
+    display: inline-block;
+    background: #fff8e7; color: #7a5a00;
+    border: 1px solid #f0d87a;
+    font-size: 10.5px; font-weight: 600;
+    padding: 2px 9px; border-radius: 50px;
+    margin-top: 4px;
+  }
+  .supply-bar-wrap { margin-top: 12px; }
+  .supply-label { font-size: 11px; color: #6b7c6a; margin-bottom: 4px; font-weight: 500; }
+  .supply-bar {
+    height: 5px; background: #e8ede6; border-radius: 99px; overflow: hidden;
+  }
+  .supply-fill {
+    height: 100%; border-radius: 99px;
+    background: linear-gradient(90deg, #a8c57a, #2d5a3d);
+  }
+
+  /* ── FULL TABLE ── */
+  .table-section { padding: 0 0 64px; }
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 13px; }
+  thead tr { background: linear-gradient(135deg, #1a3a2a, #2d5a3d); color: #fff; }
+  thead th {
+    padding: 14px 16px; text-align: left;
+    font-weight: 600; font-size: 12px; letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  thead th:first-child { border-radius: 0; min-width: 170px; }
+  tbody tr { border-bottom: 1px solid #f0f0ee; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) { background: #fafaf8; }
+  tbody tr:hover { background: #f0f5ef; }
+  .row-label {
+    font-weight: 600; color: #1a3a2a; font-size: 12px;
+    padding: 13px 16px; white-space: nowrap;
+    background: #f5f8f4 !important;
+    border-right: 2px solid #d0e4d0;
+  }
+  td { padding: 12px 14px; color: #444; line-height: 1.5; }
+  .td-eu { color: #2d6a3f; font-weight: 500; }
+  .td-none { color: #b0b8af; font-style: italic; font-size: 12px; }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #1a3a2a; color: rgba(255,255,255,0.6);
+    text-align: center; padding: 28px 24px;
+    font-size: 12px; letter-spacing: 0.5px;
+  }
+  .footer span { color: #a8c57a; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🍵 Premium Selection</div>
+  <h1>Japanese Tea Catalogue</h1>
+  <p>Sourced from the finest tea-growing regions of Japan — Kyoto, Shizuoka &amp; Kagoshima. All products comply with EU regulations.</p>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- PRODUCT CARDS -->
+<div class="container">
+  <div class="section">
+    <div class="section-title">Our Products</div>
+    <div class="section-sub">Hand-selected teas from Japan's most celebrated growing regions</div>
+    <div class="cards-grid">
+
+      <!-- MATCHA A -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/f45c81f75901043e281dbb94617d7610194c6925.jpg" alt="Matcha"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Matcha</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Matcha A</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
+            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
+            <div class="meta-row"><span class="meta-icon">❄️</span><span class="meta-label">Storage</span> Store refrigerated</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+          <div class="supply-bar-wrap">
+            <div class="supply-label">Max Supply: 4,000 kg</div>
+            <div class="supply-bar"><div class="supply-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATCHA B -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/536426f7d62243537afbdd27b434d4dc03cca660.jpg" alt="Matcha B"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Matcha</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Matcha B</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
+            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+          <div class="supply-bar-wrap">
+            <div class="supply-label">Max Supply: 100 kg</div>
+            <div class="supply-bar"><div class="supply-fill" style="width:2.5%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATCHA C -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/f45c81f75901043e281dbb94617d7610194c6925.jpg" alt="Matcha C"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Matcha</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Matcha C</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Shizuoka</div>
+            <div class="meta-row"><span class="meta-icon">🍂</span><span class="meta-label">Harvest</span> Summer / Autumn</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+          <div class="supply-bar-wrap">
+            <div class="supply-label">Max Supply: 3,000 kg</div>
+            <div class="supply-bar"><div class="supply-fill" style="width:75%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOJICHA POWDER -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/9487f354dc4988d071c6327dfdc6ff15d1ebb08c.jpg" alt="Hojicha Powder"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Hojicha</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Hojicha Powder</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
+            <div class="meta-row"><span class="meta-icon">🔄</span><span class="meta-label">Harvest</span> Blended</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+        </div>
+      </div>
+
+      <!-- HOJICHA -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/98082c1d87e1fa22d3e0957a1075d7ed495eb98c.jpg" alt="Hojicha"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Hojicha</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Hojicha</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
+            <div class="meta-row"><span class="meta-icon">🔄</span><span class="meta-label">Harvest</span> Blended</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+        </div>
+      </div>
+
+      <!-- GENMAICHA -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/14e4dd629b7b9877601738981dad6b8e6953b87d.jpg" alt="Genmaicha"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Genmaicha</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Genmaicha</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
+            <div class="meta-row"><span class="meta-icon">🔄</span><span class="meta-label">Harvest</span> Blended</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+        </div>
+      </div>
+
+      <!-- SENCHA A -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/65daca117204434d1b12933731e0cd7eb53bd275.jpg" alt="Sencha A"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Sencha · Green Tea</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Sencha A</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kagoshima</div>
+            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+        </div>
+      </div>
+
+      <!-- SENCHA B -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/0d8fe2e45598843e5ffaa9384fa36048ef004a1e.jpg" alt="Sencha B"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Sencha · Green Tea</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Sencha B</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
+            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+        </div>
+      </div>
+
+      <!-- YUZU TEA -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/37b6509ef6960a6e2b7c72dfe8f1579669e9daba.jpg" alt="Yuzu Tea"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Yuzu</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Yuzu Tea</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Shizuoka</div>
+            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+          <span class="badge-allergen">⚠ Contains: Yuzu Skin</span>
+        </div>
+      </div>
+
+      <!-- JAPANESE BLACK TEA A -->
+      <div class="card">
+        <div class="card-img" style="background: linear-gradient(135deg,#3b1a0a,#6b3520);">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/f5acd689ab7764e207de8bbfba2e910639f9aafc.jpg" alt="Japanese Black Tea A" style="opacity:0.7"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Black Tea</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Japanese Black Tea A</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kagoshima</div>
+            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+        </div>
+      </div>
+
+      <!-- JAPANESE BLACK TEA B -->
+      <div class="card">
+        <div class="card-img" style="background: linear-gradient(135deg,#3b1a0a,#6b3520);">
+          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/f5acd689ab7764e207de8bbfba2e910639f9aafc.jpg" alt="Japanese Black Tea B" style="opacity:0.65"/>
+          <div class="card-img-overlay"></div>
+          <span class="card-category">Black Tea</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Japanese Black Tea B</div>
+          <div class="card-meta">
+            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Shizuoka</div>
+            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
+            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
+          </div>
+          <span class="badge-eu">✓ EU Compliant</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FULL DATA TABLE -->
+  <div class="table-section">
+    <div class="section-title">Full Product Specifications</div>
+    <div class="section-sub">Complete technical data for all 11 product lines</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th>Matcha A</th>
+            <th>Matcha B</th>
+            <th>Matcha C</th>
+            <th>Hojicha Powder</th>
+            <th>Hojicha</th>
+            <th>Genmaicha</th>
+            <th>Sencha A</th>
+            <th>Sencha B</th>
+            <th>Yuzu Tea</th>
+            <th>Black Tea A</th>
+            <th>Black Tea B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">📍 Origin</td>
+            <td>Kyoto</td><td>Kyoto</td><td>Shizuoka</td>
+            <td>Kyoto</td><td>Kyoto</td><td>Kyoto</td>
+            <td>Kagoshima</td><td>Kyoto</td><td>Shizuoka</td>
+            <td>Kagoshima</td><td>Shizuoka</td>
+          </tr>
+          <tr>
+            <td class="row-label">🌸 Harvest / Crop</td>
+            <td>Spring</td><td>Spring</td><td>Summer / Autumn</td>
+            <td>Blended</td><td>Blended</td><td>Blended</td>
+            <td>Spring</td><td>Spring</td><td>Spring</td>
+            <td>Spring</td><td>Spring</td>
+          </tr>
+          <tr>
+            <td class="row-label">✅ Certification</td>
+            <td class="td-eu" colspan="11">EU Regulation Compliant — all product lines</td>
+          </tr>
+          <tr>
+            <td class="row-label">⚠ Allergens</td>
+            <td class="td-none">None</td><td class="td-none">None</td><td class="td-none">None</td>
+            <td class="td-none">None</td><td class="td-none">None</td><td class="td-none">None</td>
+            <td class="td-none">None</td><td class="td-none">None</td>
+            <td><strong>Yuzu skin</strong></td>
+            <td class="td-none">None</td><td class="td-none">None</td>
+          </tr>
+          <tr>
+            <td class="row-label">📅 Best Before</td>
+            <td colspan="11">1 year from production date</td>
+          </tr>
+          <tr>
+            <td class="row-label">🧊 Storage</td>
+            <td><strong>Refrigerated</strong></td>
+            <td colspan="10">Cool, dark place</td>
+          </tr>
+          <tr>
+            <td class="row-label">📦 Max Supply</td>
+            <td>4,000 kg</td><td>100 kg</td><td>3,000 kg</td>
+            <td>—</td><td>—</td><td>—</td>
+            <td>—</td><td>—</td><td>—</td>
+            <td>—</td><td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>🍵 Japanese Tea Collection &nbsp;·&nbsp; <span>All Products EU Regulation Compliant</span> &nbsp;·&nbsp; Shelf Life: 1 Year</p>
+  <p style="margin-top:6px; opacity:0.5;">Kyoto &nbsp;·&nbsp; Shizuoka &nbsp;·&nbsp; Kagoshima</p>
+</div>
+
+</body>
+</html>
