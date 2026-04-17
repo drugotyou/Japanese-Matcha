@@ -80,17 +80,6 @@ ul { list-style: none; }
 h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height: 1.15; color: var(--forest-deep); letter-spacing: -0.01em; }
 .serif { font-family: var(--font-display); }
 
-/* ========== SEIGAIHA PATTERN BG ========== */
-.pattern-bg {
-  position: absolute; inset: 0;
-  background-image: radial-gradient(circle at 15px 15px, rgba(201, 169, 97, 0.08) 12px, transparent 13px),
-                    radial-gradient(circle at 0 15px, rgba(201, 169, 97, 0.08) 12px, transparent 13px),
-                    radial-gradient(circle at 30px 15px, rgba(201, 169, 97, 0.08) 12px, transparent 13px);
-  background-size: 30px 30px;
-  pointer-events: none;
-  opacity: 0.7;
-}
-
 /* ========== NAVIGATION ========== */
 .nav {
   position: fixed; top: 0; left: 0; right: 0;
@@ -100,7 +89,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
   background: transparent;
 }
 .nav.scrolled {
-  background: rgba(245, 239, 228, 0.92);
+  background: rgba(245, 239, 228, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   padding: 14px 0;
@@ -134,44 +123,77 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 .logo-text {
   font-family: var(--font-display);
   font-size: 22px; font-weight: 600;
-  color: var(--forest-deep);
+  color: #ffffff;
   letter-spacing: 0.5px;
   line-height: 1;
+  transition: color 0.35s ease;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.4);
 }
-.logo-text span { display: block; font-size: 9px; font-family: var(--font-body); font-weight: 400; letter-spacing: 4px; color: var(--gold-deep); margin-top: 3px; text-transform: uppercase; }
+.logo-text span {
+  display: block; font-size: 9px; font-family: var(--font-body); font-weight: 400;
+  letter-spacing: 4px; color: var(--gold-soft); margin-top: 3px; text-transform: uppercase;
+  transition: color 0.35s ease;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+}
+.nav.scrolled .logo-text { color: var(--forest-deep); text-shadow: none; }
+.nav.scrolled .logo-text span { color: var(--gold-deep); text-shadow: none; }
 
 .nav-links { display: flex; align-items: center; gap: 36px; }
 .nav-links a {
-  font-size: 13px; font-weight: 500; color: var(--ink-soft);
+  font-size: 13px; font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
   transition: color 0.2s;
   position: relative;
   letter-spacing: 0.3px;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.4);
 }
-.nav-links a:hover { color: var(--forest-deep); }
-.nav-links a.active { color: var(--forest-deep); }
+.nav-links a:hover { color: #ffffff; }
+.nav-links a.active { color: #ffffff; }
 .nav-links a.active::after {
   content: ''; position: absolute; left: 0; right: 0; bottom: -6px;
   height: 1px; background: var(--gold);
 }
+.nav.scrolled .nav-links a { color: var(--ink-soft); text-shadow: none; }
+.nav.scrolled .nav-links a:hover,
+.nav.scrolled .nav-links a.active { color: var(--forest-deep); }
+
 .nav-cta {
   padding: 10px 22px;
-  background: var(--forest-deep);
-  color: var(--cream-warm) !important;
+  background: var(--gold);
+  color: var(--forest-deep) !important;
   border-radius: 50px;
   font-size: 12px !important;
   letter-spacing: 1px !important;
   text-transform: uppercase;
   transition: all 0.2s;
+  text-shadow: none !important;
 }
-.nav-cta:hover { background: var(--forest); transform: translateY(-1px); }
+.nav-cta:hover { background: var(--gold-soft); transform: translateY(-1px); color: var(--forest-deep) !important; }
 .nav-cta.active::after { display: none; }
+.nav.scrolled .nav-cta { background: var(--forest-deep); color: var(--cream-warm) !important; }
+.nav.scrolled .nav-cta:hover { background: var(--forest); color: var(--cream-warm) !important; }
 
-.nav-toggle { display: none; color: var(--forest-deep); }
+.nav-toggle {
+  display: none;
+  color: #ffffff;
+  transition: color 0.35s ease;
+}
+.nav.scrolled .nav-toggle { color: var(--forest-deep); }
 @media (max-width: 860px) {
-  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream-warm); padding: 24px; gap: 20px; border-top: 1px solid var(--line-soft); box-shadow: var(--shadow-md); align-items: stretch; }
+  .nav-links {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; background: var(--cream-warm);
+    padding: 24px; gap: 20px; border-top: 1px solid var(--line-soft);
+    box-shadow: var(--shadow-md); align-items: stretch;
+  }
   .nav-links.open { display: flex; }
-  .nav-links a { padding: 8px 0; }
-  .nav-cta { text-align: center; }
+  .nav-links a {
+    padding: 8px 0;
+    color: var(--ink-soft) !important;
+    text-shadow: none !important;
+  }
+  .nav-links a.active { color: var(--forest-deep) !important; }
+  .nav-cta { text-align: center; background: var(--forest-deep) !important; color: var(--cream-warm) !important; }
   .nav-toggle { display: block; }
 }
 
@@ -189,7 +211,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
   min-height: 100vh;
   display: flex; align-items: center;
   background: var(--forest-deep);
-  color: var(--cream-warm);
+  color: #f5f0e8;
   overflow: hidden;
   padding: 140px 0 80px;
 }
@@ -200,8 +222,14 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
     radial-gradient(ellipse at 80% 80%, rgba(45, 90, 61, 0.4) 0%, transparent 60%),
     linear-gradient(135deg, #0d2419 0%, #173a27 50%, #0d2419 100%);
 }
+.hero-bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
 .hero-bg::after {
-  content: ''; position: absolute; inset: 0;
+  content: ''; position: absolute; inset: 0; z-index: 2;
   background-image:
     radial-gradient(circle at 20px 20px, rgba(201, 169, 97, 0.05) 18px, transparent 19px),
     radial-gradient(circle at 0 20px, rgba(201, 169, 97, 0.05) 18px, transparent 19px),
@@ -211,7 +239,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 .hero-leaf {
   position: absolute;
   font-family: var(--font-display);
-  color: rgba(201, 169, 97, 0.08);
+  color: rgba(201, 169, 97, 0.09);
   font-size: clamp(200px, 40vw, 420px);
   font-style: italic;
   line-height: 0.8;
@@ -220,29 +248,32 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
   transform: translateY(-50%);
   pointer-events: none;
   user-select: none;
+  z-index: 1;
 }
 .hero-kanji {
   position: absolute;
   font-family: var(--font-display);
   font-size: clamp(160px, 25vw, 280px);
-  color: rgba(201, 169, 97, 0.06);
+  color: rgba(201, 169, 97, 0.07);
   top: 50%; left: -2%;
   transform: translateY(-50%);
   font-weight: 700;
   user-select: none; pointer-events: none;
   line-height: 1;
+  z-index: 1;
 }
 .hero-inner {
-  position: relative; z-index: 2;
+  position: relative; z-index: 3;
   max-width: 780px;
 }
 .hero h1 {
   font-size: clamp(2.8rem, 7vw, 5.4rem);
   font-weight: 500;
-  color: var(--cream-warm);
+  color: #ffffff;
   letter-spacing: -0.02em;
   margin: 28px 0 24px;
   line-height: 1.05;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
 .hero h1 em {
   font-style: italic;
@@ -251,11 +282,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 }
 .hero-sub {
   font-size: clamp(15px, 1.6vw, 17px);
-  color: rgba(245, 239, 228, 0.7);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 560px;
   margin-bottom: 40px;
   font-weight: 300;
   line-height: 1.75;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.25);
 }
 .hero-actions {
   display: flex; gap: 16px; flex-wrap: wrap;
@@ -276,8 +308,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 }
 .btn-primary:hover { background: var(--gold-soft); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(201, 169, 97, 0.3); }
 .btn-ghost {
-  border-color: rgba(245, 239, 228, 0.35);
-  color: var(--cream-warm);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
 }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold-soft); }
 .btn-solid {
@@ -290,20 +322,19 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 
 .hero-meta {
   display: flex; gap: 48px; margin-top: 60px; flex-wrap: wrap;
-  border-top: 1px solid rgba(201, 169, 97, 0.2);
+  border-top: 1px solid rgba(201, 169, 97, 0.3);
   padding-top: 32px;
 }
-.hero-meta-item { }
 .hero-meta-item strong {
   display: block;
   font-family: var(--font-display);
   font-size: 32px; font-weight: 600;
-  color: var(--gold);
+  color: var(--gold-soft);
   line-height: 1;
 }
 .hero-meta-item span {
   font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(245, 239, 228, 0.5);
+  color: rgba(255, 255, 255, 0.75);
   display: block; margin-top: 8px;
 }
 
@@ -328,13 +359,27 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
   font-weight: 300;
 }
 
-/* ========== REGIONS STRIP ========== */
+/* ========== REGIONS STRIP (DARK) ========== */
 .regions {
-  background: var(--cream-warm);
-  border-top: 1px solid var(--line-soft);
-  border-bottom: 1px solid var(--line-soft);
-  padding: 70px 0;
+  position: relative;
+  background: var(--forest-deep);
+  padding: 90px 0;
+  overflow: hidden;
 }
+.regions::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse at 30% 0%, rgba(45, 90, 61, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 100%, rgba(201, 169, 97, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #0d2419 0%, #173a27 50%, #0d2419 100%);
+}
+.regions::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.regions .container { position: relative; z-index: 1; }
 .regions-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -342,27 +387,33 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 }
 .region {
   padding: 32px 36px;
-  border-right: 1px solid var(--line-soft);
+  border-right: 1px solid rgba(201, 169, 97, 0.2);
   position: relative;
 }
 .region:last-child { border-right: none; }
 .region-name {
   font-family: var(--font-display);
-  font-size: 28px; font-weight: 600;
-  color: var(--forest-deep);
-  margin-bottom: 6px;
+  font-size: 30px; font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 8px;
   display: flex; align-items: baseline; gap: 12px;
+  letter-spacing: 0.01em;
 }
 .region-jp {
-  font-size: 14px; color: var(--gold-deep);
-  font-family: 'Noto Serif JP', serif; font-weight: 500;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 500;
 }
 .region-desc {
-  font-size: 13.5px; color: var(--ink-muted); line-height: 1.7;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.75;
+  font-weight: 300;
 }
 @media (max-width: 768px) {
   .regions-grid { grid-template-columns: 1fr; }
-  .region { border-right: none; border-bottom: 1px solid var(--line-soft); padding: 24px 0; }
+  .region { border-right: none; border-bottom: 1px solid rgba(201, 169, 97, 0.2); padding: 28px 0; }
   .region:last-child { border-bottom: none; }
 }
 
@@ -389,39 +440,25 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 }
 .product-img {
   position: relative;
-  aspect-ratio: 4 / 3;
+  width: 100%;
+  height: 220px;
   overflow: hidden;
-  background: linear-gradient(135deg, var(--forest-mid), var(--moss));
+  background: var(--forest-mid);
 }
-.product-img .tea-visual {
-  width: 100%; height: 100%;
-  display: grid; place-items: center;
-  position: relative;
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.product-img .tea-visual::before {
+.product-card:hover .product-img img { transform: scale(1.06); }
+.product-img::after {
   content: '';
   position: absolute; inset: 0;
-  background-image:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(0,0,0,0.15) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(13, 36, 25, 0.4) 0%, transparent 50%);
+  pointer-events: none;
 }
-.tea-glyph {
-  font-family: var(--font-display);
-  font-size: 130px;
-  font-style: italic;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.12);
-  line-height: 1;
-  position: relative;
-  z-index: 1;
-  user-select: none;
-}
-.product-card[data-tone="matcha"] .product-img { background: linear-gradient(135deg, #1e4a2e 0%, #3d7a4e 100%); }
-.product-card[data-tone="hojicha"] .product-img { background: linear-gradient(135deg, #6b3a1f 0%, #a05a30 100%); }
-.product-card[data-tone="genmaicha"] .product-img { background: linear-gradient(135deg, #8a6a2a 0%, #b8924a 100%); }
-.product-card[data-tone="sencha"] .product-img { background: linear-gradient(135deg, #2d5a3d 0%, #5a8a4e 100%); }
-.product-card[data-tone="yuzu"] .product-img { background: linear-gradient(135deg, #8a7a1e 0%, #d4a843 100%); }
-.product-card[data-tone="black"] .product-img { background: linear-gradient(135deg, #2a150a 0%, #5a2f1a 100%); }
 
 .category-chip {
   position: absolute; top: 16px; left: 16px;
@@ -432,6 +469,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
   letter-spacing: 1.5px; text-transform: uppercase;
   border-radius: 50px;
   z-index: 2;
+  backdrop-filter: blur(4px);
 }
 .supply-chip {
   position: absolute; top: 16px; right: 16px;
@@ -442,6 +480,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
   letter-spacing: 0.5px;
   border-radius: 50px;
   z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .product-body {
@@ -529,9 +568,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
   line-height: 1;
   pointer-events: none;
 }
-.about .section-title { color: var(--cream-warm); }
+.about .section-title { color: #ffffff; }
 .about .section-title em { color: var(--gold-soft); }
-.about .section-lead { color: rgba(245, 239, 228, 0.75); }
+.about .section-lead { color: rgba(255, 255, 255, 0.8); }
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -566,11 +605,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 .value-title {
   font-family: var(--font-display);
   font-size: 20px; font-weight: 600;
-  color: var(--cream-warm);
+  color: #ffffff;
   margin-bottom: 4px;
 }
 .value-text {
-  font-size: 13.5px; color: rgba(245, 239, 228, 0.65);
+  font-size: 13.5px; color: rgba(255, 255, 255, 0.75);
   line-height: 1.7; font-weight: 300;
 }
 
@@ -609,16 +648,20 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
     radial-gradient(ellipse at 70% 30%, rgba(201, 169, 97, 0.1) 0%, transparent 50%),
     linear-gradient(180deg, #0d2419 0%, #173a27 100%);
 }
+.bulk-hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
 .bulk-hero .container { position: relative; z-index: 1; }
 .bulk-hero h1 {
   font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-  color: var(--cream-warm);
+  color: #ffffff;
   margin: 20px 0 18px;
   font-weight: 500;
   line-height: 1.1;
 }
 .bulk-hero h1 em { color: var(--gold-soft); font-style: italic; font-weight: 400; }
-.bulk-hero p { color: rgba(245, 239, 228, 0.7); max-width: 640px; font-size: 16px; line-height: 1.75; font-weight: 300; }
+.bulk-hero p { color: rgba(255, 255, 255, 0.85); max-width: 640px; font-size: 16px; line-height: 1.75; font-weight: 300; }
 
 .min-order {
   background: var(--gold);
@@ -828,7 +871,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 /* ========== FOOTER ========== */
 .footer {
   background: var(--forest-deep);
-  color: rgba(245, 239, 228, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   padding: 72px 0 30px;
   border-top: 1px solid rgba(201, 169, 97, 0.15);
 }
@@ -842,7 +885,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
 .footer-brand {
   font-family: var(--font-display);
-  font-size: 28px; color: var(--cream-warm);
+  font-size: 28px; color: #ffffff;
   font-weight: 600;
   margin-bottom: 16px;
 }
@@ -857,7 +900,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 .footer ul li { margin-bottom: 10px; }
 .footer ul li a {
   font-size: 13.5px;
-  color: rgba(245, 239, 228, 0.65);
+  color: rgba(255, 255, 255, 0.7);
   transition: color 0.2s;
   cursor: pointer;
 }
@@ -867,9 +910,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
   border-top: 1px solid rgba(201, 169, 97, 0.15);
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 16px;
-  font-size: 12px; color: rgba(245, 239, 228, 0.45);
+  font-size: 12px; color: rgba(255, 255, 255, 0.55);
 }
-.footer-bottom a { color: rgba(245, 239, 228, 0.55); }
+.footer-bottom a { color: rgba(255, 255, 255, 0.65); }
 
 /* ========== ANIMATIONS ========== */
 .fade-up {
@@ -1243,77 +1286,88 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height
 /* ─────────────────  PRODUCT DATA  ───────────────── */
 const PRODUCTS = [
   {
-    name: 'Matcha A', jp: '抹茶 A', tone: 'matcha', glyph: 'M',
+    name: 'Matcha A', jp: '抹茶 A',
+    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80',
     category: 'Matcha · Ceremonial',
     origin: 'Kyoto', harvest: 'Spring', storage: 'Store refrigerated',
     supply: 4000, allergens: null,
     description: 'Uji in Kyoto is the spiritual home of matcha, with over eight centuries of cultivation behind it. Matcha A is a ceremonial-grade stone-ground powder from shade-grown tencha leaves, producing a vibrant emerald hue and the smooth umami profile suited to traditional tea ceremony (chanoyu).'
   },
   {
-    name: 'Matcha B', jp: '抹茶 B', tone: 'matcha', glyph: 'M',
+    name: 'Matcha B', jp: '抹茶 B',
+    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80',
     category: 'Matcha · Limited Reserve',
     origin: 'Kyoto', harvest: 'Spring', storage: 'Cool, dark place',
     supply: 100, allergens: null,
     description: 'A limited-production ceremonial matcha from a single Uji cultivar, capped at 100kg per season to preserve its uncompromised character. Its delicate balance of natural sweetness and umami makes it prized by tea masters for koicha (thick-tea) preparations.'
   },
   {
-    name: 'Matcha C', jp: '抹茶 C', tone: 'matcha', glyph: 'M',
+    name: 'Matcha C', jp: '抹茶 C',
+    image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80',
     category: 'Matcha · Culinary',
     origin: 'Shizuoka', harvest: 'Summer / Autumn', storage: 'Cool, dark place',
     supply: 3000, allergens: null,
     description: 'Harvested in the later growing seasons across Shizuoka — Japan\'s largest tea-producing prefecture — Matcha C is a culinary-grade powder built for versatility in lattes, baking, ice cream and confectionery. Its bolder, slightly astringent character stands up well to dairy and sugar without losing its green-tea integrity.'
   },
   {
-    name: 'Hojicha Powder', jp: 'ほうじ茶粉末', tone: 'hojicha', glyph: 'H',
+    name: 'Hojicha Powder', jp: 'ほうじ茶粉末',
+    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80',
     category: 'Hojicha · Roasted Green',
     origin: 'Kyoto', harvest: 'Blended', storage: 'Cool, dark place',
     supply: null, allergens: null,
     description: 'Hojicha is made by roasting green tea leaves, transforming the grassy profile into warm, toasty, nutty flavours with notably low caffeine. The powdered form works beautifully in lattes, ice cream, baked goods and desserts — and its low-caffeine character makes it a favourite for children and evening drinking.'
   },
   {
-    name: 'Hojicha', jp: 'ほうじ茶', tone: 'hojicha', glyph: 'H',
+    name: 'Hojicha', jp: 'ほうじ茶',
+    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80',
     category: 'Hojicha · Loose Leaf',
     origin: 'Kyoto', harvest: 'Blended', storage: 'Cool, dark place',
     supply: null, allergens: null,
     description: 'Our loose-leaf Hojicha is roasted in the traditional Kyoto style, producing a reddish-amber infusion with a deep roasted aroma and a remarkably smooth, low-tannin taste. It is commonly served after meals in Japanese homes thanks to its mild, caffeine-light profile.'
   },
   {
-    name: 'Genmaicha', jp: '玄米茶', tone: 'genmaicha', glyph: 'G',
+    name: 'Genmaicha', jp: '玄米茶',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
     category: 'Genmaicha · Brown Rice Blend',
     origin: 'Kyoto', harvest: 'Blended', storage: 'Cool, dark place',
     supply: null, allergens: null,
     description: 'Often called "popcorn tea," genmaicha blends sencha green tea with roasted and popped brown rice, producing a comforting, nutty, savoury cup. Originating as a way to stretch precious tea with grain, it is now a beloved everyday tea in Japan and a natural companion to rice-based meals.'
   },
   {
-    name: 'Sencha A', jp: '煎茶 A', tone: 'sencha', glyph: 'S',
+    name: 'Sencha A', jp: '煎茶 A',
+    image: 'https://images.unsplash.com/photo-1587749090472-ebebf1d4e3c3?w=600&q=80',
     category: 'Sencha · Green Tea',
     origin: 'Kagoshima', harvest: 'Spring', storage: 'Cool, dark place',
     supply: null, allergens: null,
     description: 'Kagoshima, on Japan\'s southern island of Kyushu, enjoys a warmer climate that produces the earliest sencha of the year. Our Spring Sencha A delivers a bright, refreshing, grassy cup with moderate umami — an approachable daily-drinking tea that also performs beautifully cold-brewed.'
   },
   {
-    name: 'Sencha B', jp: '煎茶 B', tone: 'sencha', glyph: 'S',
+    name: 'Sencha B', jp: '煎茶 B',
+    image: 'https://images.unsplash.com/photo-1587749090472-ebebf1d4e3c3?w=600&q=80',
     category: 'Sencha · Green Tea',
     origin: 'Kyoto', harvest: 'Spring', storage: 'Cool, dark place',
     supply: null, allergens: null,
     description: 'Kyoto sencha carries a more refined, mellow profile drawn from the prefecture\'s cooler mountain terroir, with gentle sweetness and a clean finish. This first-flush spring harvest is steamed briefly to preserve delicate aromatic compounds — an elegant choice for connoisseurs.'
   },
   {
-    name: 'Yuzu Tea', jp: '柚子茶', tone: 'yuzu', glyph: 'Y',
+    name: 'Yuzu Tea', jp: '柚子茶',
+    image: 'https://images.unsplash.com/photo-1594226801341-41427b4e5c22?w=600&q=80',
     category: 'Yuzu · Citrus Infusion',
     origin: 'Shizuoka', harvest: 'Spring', storage: 'Cool, dark place',
     supply: null, allergens: 'Yuzu skin',
     description: 'A fragrant infusion combining Japanese green tea with yuzu — a distinctive citrus cultivated in the mountain regions of Japan — offering a bright, floral, citrus-forward cup. It performs equally well hot or iced and pairs naturally with light desserts and summer dining.'
   },
   {
-    name: 'Japanese Black Tea A', jp: '和紅茶 A', tone: 'black', glyph: 'B',
+    name: 'Japanese Black Tea A', jp: '和紅茶 A',
+    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80',
     category: 'Wakoucha · Japanese Black',
     origin: 'Kagoshima', harvest: 'Spring', storage: 'Cool, dark place',
     supply: null, allergens: null,
     description: 'Known in Japan as wakoucha, Japanese black tea is fully oxidised green-tea-cultivar leaf, producing a naturally sweet, low-astringency brew quite unlike Indian or Ceylon styles. Kagoshima\'s early-season harvest yields a mellow, honey-like body that drinks beautifully neat or with a splash of milk.'
   },
   {
-    name: 'Japanese Black Tea B', jp: '和紅茶 B', tone: 'black', glyph: 'B',
+    name: 'Japanese Black Tea B', jp: '和紅茶 B',
+    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80',
     category: 'Wakoucha · Japanese Black',
     origin: 'Shizuoka', harvest: 'Spring', storage: 'Cool, dark place',
     supply: null, allergens: null,
@@ -1334,11 +1388,11 @@ function renderProducts() {
       : '';
 
     return `
-      <article class="product-card fade-up ${staggerClass}" data-tone="${p.tone}">
+      <article class="product-card fade-up ${staggerClass}">
         <div class="product-img">
+          <img src="${p.image}" alt="${p.name}" loading="lazy" />
           <span class="category-chip">${p.category}</span>
           ${supplyChip}
-          <div class="tea-visual"><span class="tea-glyph">${p.glyph}</span></div>
         </div>
         <div class="product-body">
           <h3 class="product-name">${p.name}</h3>
@@ -1398,15 +1452,12 @@ function showPage(pageId, sectionId) {
   const page = document.getElementById('page-' + pageId);
   if (page) page.classList.add('active');
 
-  // Update nav active state
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const activeLink = document.querySelector(`.nav-links a[data-page="${pageId}"]${sectionId ? `[data-section="${sectionId}"]` : ''}`);
   if (activeLink) activeLink.classList.add('active');
 
-  // Close mobile nav
   document.getElementById('navLinks').classList.remove('open');
 
-  // Scroll behavior
   if (sectionId) {
     setTimeout(() => {
       const el = document.getElementById(sectionId);
@@ -1419,16 +1470,13 @@ function showPage(pageId, sectionId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Re-trigger observers for newly shown page
   setTimeout(triggerFadeUps, 100);
 
-  // Re-init lucide icons in case new content was rendered
   if (window.lucide) window.lucide.createIcons();
 }
 
 /* ─────────────────  NAV HANDLING  ───────────────── */
 function initNav() {
-  // Nav link clicks
   document.querySelectorAll('[data-page]').forEach(el => {
     el.addEventListener('click', (e) => {
       e.preventDefault();
@@ -1438,12 +1486,10 @@ function initNav() {
     });
   });
 
-  // Mobile toggle
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
 
-  // Scrolled style
   const nav = document.getElementById('nav');
   const onScroll = () => {
     if (window.scrollY > 30) nav.classList.add('scrolled');
@@ -1469,7 +1515,6 @@ function initFadeObserver() {
 }
 function triggerFadeUps() {
   document.querySelectorAll('.fade-up:not(.visible)').forEach(el => {
-    // Only observe if visible (not in hidden page)
     const parentPage = el.closest('.page');
     if (!parentPage || parentPage.classList.contains('active')) {
       fadeObserver.observe(el);
@@ -1485,7 +1530,6 @@ function initForm() {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Basic validation
     const qty = parseFloat(document.getElementById('fQty').value);
     if (qty < 20) {
       alert('Minimum order quantity is 20 kg. Please adjust your quantity.');
@@ -1496,7 +1540,6 @@ function initForm() {
       return;
     }
 
-    // Simulate submission
     success.classList.add('show');
     form.reset();
     success.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1514,11 +1557,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initFadeObserver();
   initForm();
 
-  // Init lucide icons after DOM is populated
   if (window.lucide) {
     window.lucide.createIcons();
   } else {
-    // Lucide loads async with defer; retry after script loads
     const iv = setInterval(() => {
       if (window.lucide) {
         window.lucide.createIcons();
