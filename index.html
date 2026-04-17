@@ -1,511 +1,1534 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Japanese Tea Product Catalogue</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Sakura Leaf — premium Japanese tea import & export. Matcha, Sencha, Hojicha, Genmaicha, Yuzu and Wakoucha from Kyoto, Shizuoka and Kagoshima. Bulk supply to EU markets." />
+<title>Sakura Leaf · Premium Japanese Tea — Import &amp; Export</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet" />
+
+<!-- Icon library: Lucide -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Inter', sans-serif; background: #f5f0ea; color: #2d2d2d; }
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, #1a3a2a 0%, #2d5a3d 50%, #1a3a2a 100%);
-    color: #fff;
-    text-align: center;
-    padding: 72px 24px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: url('https://pplx-res.cloudinary.com/image/upload/pplx_search_images/65daca117204434d1b12933731e0cd7eb53bd275.jpg') center/cover no-repeat;
-    opacity: 0.12;
-  }
-  .hero-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 50px;
-    padding: 6px 18px;
-    font-size: 12px;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    font-weight: 700;
-    letter-spacing: 1px;
-    position: relative;
-    margin-bottom: 14px;
-  }
-  .hero p {
-    font-size: 15px;
-    opacity: 0.75;
-    max-width: 520px;
-    margin: 0 auto;
-    position: relative;
-    line-height: 1.7;
-  }
-  .hero-divider {
-    width: 60px; height: 3px;
-    background: linear-gradient(90deg, #a8c57a, #d4a843);
-    margin: 22px auto 0;
-    border-radius: 2px;
-    position: relative;
-  }
+:root {
+  --forest-deep: #0d2419;
+  --forest: #173a27;
+  --forest-mid: #234a35;
+  --moss: #2d5a3d;
+  --sage: #8aa876;
+  --sage-light: #c1d4b0;
+  --gold: #c9a961;
+  --gold-soft: #d9bd7a;
+  --gold-deep: #a6864a;
+  --cream: #f5efe4;
+  --cream-warm: #faf5ea;
+  --cream-card: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #4a4a48;
+  --ink-muted: #7a7a77;
+  --line: rgba(13, 36, 25, 0.1);
+  --line-soft: rgba(13, 36, 25, 0.06);
+  --shadow-sm: 0 2px 12px rgba(13, 36, 25, 0.06);
+  --shadow-md: 0 8px 32px rgba(13, 36, 25, 0.08);
+  --shadow-lg: 0 24px 64px rgba(13, 36, 25, 0.14);
 
-  /* ── LAYOUT ── */
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-  .section { padding: 56px 0 40px; }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.65rem;
-    font-weight: 600;
-    color: #1a3a2a;
-    margin-bottom: 6px;
-  }
-  .section-sub {
-    font-size: 13.5px;
-    color: #6b7c6a;
-    margin-bottom: 34px;
-    letter-spacing: 0.3px;
-  }
+  --font-display: 'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
+  --font-body: 'Noto Sans JP', -apple-system, sans-serif;
+}
 
-  /* ── PRODUCT CARDS ── */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 24px;
-  }
-  .card {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-    transition: transform .25s, box-shadow .25s;
-    border: 1px solid rgba(0,0,0,0.04);
-  }
-  .card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
-  .card-img {
-    height: 180px;
-    overflow: hidden;
-    position: relative;
-  }
-  .card-img img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform .4s;
-  }
-  .card:hover .card-img img { transform: scale(1.06); }
-  .card-img-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(26,58,42,0.55) 0%, transparent 55%);
-  }
-  .card-category {
-    position: absolute;
-    bottom: 10px; left: 14px;
-    background: rgba(255,255,255,0.92);
-    color: #1a3a2a;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 50px;
-  }
-  .card-body { padding: 18px 18px 20px; }
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #1a3a2a;
-    margin-bottom: 12px;
-  }
-  .card-meta { display: flex; flex-direction: column; gap: 7px; }
-  .meta-row {
-    display: flex; align-items: flex-start; gap: 8px;
-    font-size: 12.5px; color: #4a5a49;
-  }
-  .meta-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
-  .meta-label { font-weight: 600; color: #2d4a2e; min-width: 52px; }
-  .badge-eu {
-    display: inline-block;
-    background: #eaf3eb; color: #2d6a3f;
-    border: 1px solid #b8dfc1;
-    font-size: 10.5px; font-weight: 600;
-    padding: 2px 9px; border-radius: 50px;
-    margin-top: 6px;
-  }
-  .badge-allergen {
-    display: inline-block;
-    background: #fff8e7; color: #7a5a00;
-    border: 1px solid #f0d87a;
-    font-size: 10.5px; font-weight: 600;
-    padding: 2px 9px; border-radius: 50px;
-    margin-top: 4px;
-  }
-  .supply-bar-wrap { margin-top: 12px; }
-  .supply-label { font-size: 11px; color: #6b7c6a; margin-bottom: 4px; font-weight: 500; }
-  .supply-bar {
-    height: 5px; background: #e8ede6; border-radius: 99px; overflow: hidden;
-  }
-  .supply-fill {
-    height: 100%; border-radius: 99px;
-    background: linear-gradient(90deg, #a8c57a, #2d5a3d);
-  }
+/* ========== UTILITIES ========== */
+.container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 28px; }
+@media (max-width: 640px) { .container { padding: 0 20px; } }
 
-  /* ── FULL TABLE ── */
-  .table-section { padding: 0 0 64px; }
-  .table-wrap {
-    overflow-x: auto;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-    border: 1px solid rgba(0,0,0,0.06);
-  }
-  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 13px; }
-  thead tr { background: linear-gradient(135deg, #1a3a2a, #2d5a3d); color: #fff; }
-  thead th {
-    padding: 14px 16px; text-align: left;
-    font-weight: 600; font-size: 12px; letter-spacing: 0.5px;
-    white-space: nowrap;
-  }
-  thead th:first-child { border-radius: 0; min-width: 170px; }
-  tbody tr { border-bottom: 1px solid #f0f0ee; }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:nth-child(even) { background: #fafaf8; }
-  tbody tr:hover { background: #f0f5ef; }
-  .row-label {
-    font-weight: 600; color: #1a3a2a; font-size: 12px;
-    padding: 13px 16px; white-space: nowrap;
-    background: #f5f8f4 !important;
-    border-right: 2px solid #d0e4d0;
-  }
-  td { padding: 12px 14px; color: #444; line-height: 1.5; }
-  .td-eu { color: #2d6a3f; font-weight: 500; }
-  .td-none { color: #b0b8af; font-style: italic; font-size: 12px; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.eyebrow::before {
+  content: ''; width: 28px; height: 1px; background: var(--gold);
+}
+.eyebrow.light { color: var(--gold-soft); }
+.eyebrow.light::before { background: var(--gold-soft); }
+.eyebrow.center { justify-content: center; }
 
-  /* ── FOOTER ── */
-  .footer {
-    background: #1a3a2a; color: rgba(255,255,255,0.6);
-    text-align: center; padding: 28px 24px;
-    font-size: 12px; letter-spacing: 0.5px;
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height: 1.15; color: var(--forest-deep); letter-spacing: -0.01em; }
+.serif { font-family: var(--font-display); }
+
+/* ========== SEIGAIHA PATTERN BG ========== */
+.pattern-bg {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 15px 15px, rgba(201, 169, 97, 0.08) 12px, transparent 13px),
+                    radial-gradient(circle at 0 15px, rgba(201, 169, 97, 0.08) 12px, transparent 13px),
+                    radial-gradient(circle at 30px 15px, rgba(201, 169, 97, 0.08) 12px, transparent 13px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* ========== NAVIGATION ========== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  transition: all 0.35s ease;
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(245, 239, 228, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 14px 0;
+  box-shadow: 0 1px 0 var(--line-soft);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+}
+.logo {
+  display: flex; align-items: center; gap: 12px;
+  cursor: pointer;
+}
+.logo-mark {
+  width: 38px; height: 38px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--forest);
+  background: var(--cream-warm);
+  font-weight: 600;
+  position: relative;
+  flex-shrink: 0;
+}
+.logo-mark::after {
+  content: ''; position: absolute; inset: 3px;
+  border: 0.5px solid var(--gold-soft); border-radius: 50%;
+}
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 600;
+  color: var(--forest-deep);
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+.logo-text span { display: block; font-size: 9px; font-family: var(--font-body); font-weight: 400; letter-spacing: 4px; color: var(--gold-deep); margin-top: 3px; text-transform: uppercase; }
+
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--ink-soft);
+  transition: color 0.2s;
+  position: relative;
+  letter-spacing: 0.3px;
+}
+.nav-links a:hover { color: var(--forest-deep); }
+.nav-links a.active { color: var(--forest-deep); }
+.nav-links a.active::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -6px;
+  height: 1px; background: var(--gold);
+}
+.nav-cta {
+  padding: 10px 22px;
+  background: var(--forest-deep);
+  color: var(--cream-warm) !important;
+  border-radius: 50px;
+  font-size: 12px !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--forest); transform: translateY(-1px); }
+.nav-cta.active::after { display: none; }
+
+.nav-toggle { display: none; color: var(--forest-deep); }
+@media (max-width: 860px) {
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--cream-warm); padding: 24px; gap: 20px; border-top: 1px solid var(--line-soft); box-shadow: var(--shadow-md); align-items: stretch; }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 8px 0; }
+  .nav-cta { text-align: center; }
+  .nav-toggle { display: block; }
+}
+
+/* ========== PAGE TRANSITIONS ========== */
+.page { display: none; }
+.page.active { display: block; animation: pageFade 0.5s ease; }
+@keyframes pageFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== HERO ========== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  background: var(--forest-deep);
+  color: var(--cream-warm);
+  overflow: hidden;
+  padding: 140px 0 80px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(201, 169, 97, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(45, 90, 61, 0.4) 0%, transparent 60%),
+    linear-gradient(135deg, #0d2419 0%, #173a27 50%, #0d2419 100%);
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20px 20px, rgba(201, 169, 97, 0.05) 18px, transparent 19px),
+    radial-gradient(circle at 0 20px, rgba(201, 169, 97, 0.05) 18px, transparent 19px),
+    radial-gradient(circle at 40px 20px, rgba(201, 169, 97, 0.05) 18px, transparent 19px);
+  background-size: 40px 40px;
+}
+.hero-leaf {
+  position: absolute;
+  font-family: var(--font-display);
+  color: rgba(201, 169, 97, 0.08);
+  font-size: clamp(200px, 40vw, 420px);
+  font-style: italic;
+  line-height: 0.8;
+  font-weight: 400;
+  top: 50%; right: -5%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+.hero-kanji {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(160px, 25vw, 280px);
+  color: rgba(201, 169, 97, 0.06);
+  top: 50%; left: -2%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  user-select: none; pointer-events: none;
+  line-height: 1;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 780px;
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 5.4rem);
+  font-weight: 500;
+  color: var(--cream-warm);
+  letter-spacing: -0.02em;
+  margin: 28px 0 24px;
+  line-height: 1.05;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-soft);
+  font-weight: 400;
+}
+.hero-sub {
+  font-size: clamp(15px, 1.6vw, 17px);
+  color: rgba(245, 239, 228, 0.7);
+  max-width: 560px;
+  margin-bottom: 40px;
+  font-weight: 300;
+  line-height: 1.75;
+}
+.hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 32px;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--forest-deep);
+}
+.btn-primary:hover { background: var(--gold-soft); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(201, 169, 97, 0.3); }
+.btn-ghost {
+  border-color: rgba(245, 239, 228, 0.35);
+  color: var(--cream-warm);
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold-soft); }
+.btn-solid {
+  background: var(--forest-deep);
+  color: var(--cream-warm);
+}
+.btn-solid:hover { background: var(--forest); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.btn svg { width: 16px; height: 16px; stroke-width: 2; transition: transform 0.3s; }
+.btn:hover svg { transform: translateX(3px); }
+
+.hero-meta {
+  display: flex; gap: 48px; margin-top: 60px; flex-wrap: wrap;
+  border-top: 1px solid rgba(201, 169, 97, 0.2);
+  padding-top: 32px;
+}
+.hero-meta-item { }
+.hero-meta-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+}
+.hero-meta-item span {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(245, 239, 228, 0.5);
+  display: block; margin-top: 8px;
+}
+
+/* ========== SECTION BASE ========== */
+.section { padding: 110px 0; position: relative; }
+.section-header {
+  max-width: 720px;
+  margin-bottom: 64px;
+}
+.section-header.center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 500;
+  margin: 18px 0 18px;
+  color: var(--forest-deep);
+}
+.section-title em { font-style: italic; color: var(--gold-deep); font-weight: 400; }
+.section-lead {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ========== REGIONS STRIP ========== */
+.regions {
+  background: var(--cream-warm);
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  padding: 70px 0;
+}
+.regions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.region {
+  padding: 32px 36px;
+  border-right: 1px solid var(--line-soft);
+  position: relative;
+}
+.region:last-child { border-right: none; }
+.region-name {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 600;
+  color: var(--forest-deep);
+  margin-bottom: 6px;
+  display: flex; align-items: baseline; gap: 12px;
+}
+.region-jp {
+  font-size: 14px; color: var(--gold-deep);
+  font-family: 'Noto Serif JP', serif; font-weight: 500;
+}
+.region-desc {
+  font-size: 13.5px; color: var(--ink-muted); line-height: 1.7;
+}
+@media (max-width: 768px) {
+  .regions-grid { grid-template-columns: 1fr; }
+  .region { border-right: none; border-bottom: 1px solid var(--line-soft); padding: 24px 0; }
+  .region:last-child { border-bottom: none; }
+}
+
+/* ========== PRODUCT CATALOGUE ========== */
+.products { background: var(--cream); }
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+}
+.product-card {
+  background: var(--cream-card);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line-soft);
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold-soft);
+}
+.product-img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--forest-mid), var(--moss));
+}
+.product-img .tea-visual {
+  width: 100%; height: 100%;
+  display: grid; place-items: center;
+  position: relative;
+}
+.product-img .tea-visual::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(0,0,0,0.15) 0%, transparent 50%);
+}
+.tea-glyph {
+  font-family: var(--font-display);
+  font-size: 130px;
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.12);
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  user-select: none;
+}
+.product-card[data-tone="matcha"] .product-img { background: linear-gradient(135deg, #1e4a2e 0%, #3d7a4e 100%); }
+.product-card[data-tone="hojicha"] .product-img { background: linear-gradient(135deg, #6b3a1f 0%, #a05a30 100%); }
+.product-card[data-tone="genmaicha"] .product-img { background: linear-gradient(135deg, #8a6a2a 0%, #b8924a 100%); }
+.product-card[data-tone="sencha"] .product-img { background: linear-gradient(135deg, #2d5a3d 0%, #5a8a4e 100%); }
+.product-card[data-tone="yuzu"] .product-img { background: linear-gradient(135deg, #8a7a1e 0%, #d4a843 100%); }
+.product-card[data-tone="black"] .product-img { background: linear-gradient(135deg, #2a150a 0%, #5a2f1a 100%); }
+
+.category-chip {
+  position: absolute; top: 16px; left: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--forest-deep);
+  padding: 6px 14px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  border-radius: 50px;
+  z-index: 2;
+}
+.supply-chip {
+  position: absolute; top: 16px; right: 16px;
+  background: var(--gold);
+  color: var(--forest-deep);
+  padding: 6px 12px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  z-index: 2;
+}
+
+.product-body {
+  padding: 28px 26px 30px;
+  flex: 1;
+  display: flex; flex-direction: column;
+}
+.product-name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--forest-deep);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.product-jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px;
+  color: var(--gold-deep);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.product-desc {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-bottom: 22px;
+  font-weight: 300;
+  flex: 1;
+}
+.product-attrs {
+  display: grid; grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.attr {
+  display: grid;
+  grid-template-columns: 20px 80px 1fr;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+}
+.attr svg { width: 15px; height: 15px; color: var(--gold-deep); stroke-width: 1.8; }
+.attr-label {
+  font-size: 10.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+.attr-value { color: var(--ink); font-weight: 500; }
+
+.product-badges {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 50px;
+  border: 1px solid;
+}
+.badge svg { width: 12px; height: 12px; stroke-width: 2.5; }
+.badge-eu { background: #eaf3eb; color: #1e5532; border-color: #b8dfc1; }
+.badge-allergen { background: #fef4d8; color: #6f5400; border-color: #ebd587; }
+
+/* ========== ABOUT SECTION ========== */
+.about {
+  background: var(--forest-deep);
+  color: var(--cream-warm);
+  position: relative;
+  overflow: hidden;
+}
+.about::before {
+  content: '茶';
+  position: absolute;
+  right: -40px; bottom: -80px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 420px;
+  color: rgba(201, 169, 97, 0.06);
+  font-weight: 700;
+  line-height: 1;
+  pointer-events: none;
+}
+.about .section-title { color: var(--cream-warm); }
+.about .section-title em { color: var(--gold-soft); }
+.about .section-lead { color: rgba(245, 239, 228, 0.75); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+.about-values {
+  display: grid; gap: 18px;
+}
+.value {
+  display: flex; gap: 18px;
+  padding: 22px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 169, 97, 0.2);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.value:hover { background: rgba(255, 255, 255, 0.07); border-color: rgba(201, 169, 97, 0.4); }
+.value-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.value-icon svg { width: 18px; height: 18px; color: var(--gold-soft); stroke-width: 1.8; }
+.value-title {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 600;
+  color: var(--cream-warm);
+  margin-bottom: 4px;
+}
+.value-text {
+  font-size: 13.5px; color: rgba(245, 239, 228, 0.65);
+  line-height: 1.7; font-weight: 300;
+}
+
+/* ========== BULK CTA SECTION ========== */
+.bulk-cta {
+  background: var(--cream-warm);
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.bulk-cta::before, .bulk-cta::after {
+  content: '';
+  position: absolute;
+  width: 200px; height: 200px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+.bulk-cta::before { top: -100px; left: -50px; }
+.bulk-cta::after { bottom: -100px; right: -50px; width: 280px; height: 280px; }
+.bulk-cta .container { position: relative; z-index: 1; }
+.bulk-cta h2 { margin-bottom: 18px; }
+
+/* ========== BULK PAGE ========== */
+.bulk-hero {
+  background: var(--forest-deep);
+  color: var(--cream-warm);
+  padding: 160px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+.bulk-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse at 70% 30%, rgba(201, 169, 97, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, #0d2419 0%, #173a27 100%);
+}
+.bulk-hero .container { position: relative; z-index: 1; }
+.bulk-hero h1 {
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  color: var(--cream-warm);
+  margin: 20px 0 18px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+.bulk-hero h1 em { color: var(--gold-soft); font-style: italic; font-weight: 400; }
+.bulk-hero p { color: rgba(245, 239, 228, 0.7); max-width: 640px; font-size: 16px; line-height: 1.75; font-weight: 300; }
+
+.min-order {
+  background: var(--gold);
+  color: var(--forest-deep);
+  padding: 22px 0;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.min-order strong { font-family: var(--font-display); font-size: 18px; font-weight: 700; text-transform: none; letter-spacing: normal; }
+
+/* ========== FORM ========== */
+.form-section { background: var(--cream); padding: 100px 0; }
+.form-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 64px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .form-wrap { grid-template-columns: 1fr; gap: 40px; }
+}
+.form-aside h2 { margin-bottom: 18px; }
+.form-aside p { font-size: 15px; color: var(--ink-soft); line-height: 1.8; font-weight: 300; margin-bottom: 28px; }
+.contact-line {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; color: var(--forest-deep);
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.contact-line:last-child { border-bottom: 1px solid var(--line); }
+.contact-line svg { width: 16px; height: 16px; color: var(--gold-deep); stroke-width: 1.8; }
+
+.form {
+  background: var(--cream-card);
+  padding: 44px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--line-soft);
+}
+@media (max-width: 640px) { .form { padding: 32px 24px; } }
+.form-row { margin-bottom: 22px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; gap: 18px; } }
+.form label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.form label .req { color: var(--gold-deep); margin-left: 3px; }
+.form input, .form select, .form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--cream-warm);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 14.5px;
+  color: var(--ink);
+  transition: all 0.2s;
+}
+.form textarea { resize: vertical; min-height: 130px; font-family: inherit; line-height: 1.6; }
+.form input:focus, .form select:focus, .form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--cream-card);
+  box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.12);
+}
+.form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234a4a48' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 44px;
+}
+.submit-btn {
+  width: 100%;
+  padding: 17px;
+  background: var(--forest-deep);
+  color: var(--cream-warm);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: all 0.25s;
+  margin-top: 8px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+}
+.submit-btn:hover { background: var(--gold); color: var(--forest-deep); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(13, 36, 25, 0.18); }
+.submit-btn svg { width: 16px; height: 16px; }
+.form-note { font-size: 12px; color: var(--ink-muted); margin-top: 14px; text-align: center; font-style: italic; }
+.success-msg {
+  display: none;
+  background: #eaf3eb;
+  border: 1px solid #b8dfc1;
+  color: #1e5532;
+  padding: 16px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+.success-msg.show { display: flex; align-items: center; gap: 12px; }
+.success-msg svg { width: 20px; height: 20px; color: #2d6a3f; flex-shrink: 0; }
+
+/* ========== SUPPLY TABLE ========== */
+.supply-section { background: var(--cream-warm); padding: 100px 0; }
+.supply-table-wrap {
+  background: var(--cream-card);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line-soft);
+}
+.supply-table { width: 100%; border-collapse: collapse; }
+.supply-table th, .supply-table td {
+  padding: 20px 28px;
+  text-align: left;
+}
+.supply-table thead th {
+  background: var(--forest-deep);
+  color: var(--cream-warm);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.supply-table tbody tr { border-top: 1px solid var(--line-soft); }
+.supply-table tbody tr:hover { background: var(--cream-warm); }
+.supply-table td { font-size: 14.5px; color: var(--ink); }
+.supply-name { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--forest-deep); }
+.supply-qty { font-family: var(--font-display); font-size: 22px; font-weight: 600; color: var(--gold-deep); }
+.supply-bar-bg {
+  width: 100%; max-width: 180px;
+  height: 6px; background: var(--line-soft);
+  border-radius: 50px; overflow: hidden;
+  margin-top: 4px;
+}
+.supply-bar-fill {
+  height: 100%; border-radius: 50px;
+  background: linear-gradient(90deg, var(--gold), var(--moss));
+  transition: width 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.supply-na { color: var(--ink-muted); font-style: italic; font-size: 13px; }
+.supply-table-mobile { display: none; }
+@media (max-width: 720px) {
+  .supply-table { display: none; }
+  .supply-table-mobile { display: block; }
+  .supply-card {
+    padding: 22px;
+    border-bottom: 1px solid var(--line-soft);
+    background: var(--cream-card);
   }
-  .footer span { color: #a8c57a; font-weight: 600; }
+  .supply-card:last-child { border-bottom: none; }
+  .supply-card-name { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--forest-deep); margin-bottom: 4px; }
+  .supply-card-origin { font-size: 12px; color: var(--ink-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .supply-card-qty { font-family: var(--font-display); font-size: 26px; color: var(--gold-deep); font-weight: 600; }
+}
+
+/* ========== SHIPPING PROCESS ========== */
+.process { background: var(--cream); padding: 100px 0; }
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+}
+@media (max-width: 900px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .process-grid { grid-template-columns: 1fr; } }
+.step {
+  padding: 32px 26px;
+  background: var(--cream-card);
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s;
+}
+.step:hover {
+  border-color: var(--gold-soft);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.step-num {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 500;
+  color: var(--gold);
+  line-height: 1;
+  font-style: italic;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+.step-title {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 600;
+  color: var(--forest-deep);
+  margin-bottom: 10px;
+}
+.step-text { font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; font-weight: 300; }
+
+/* ========== FOOTER ========== */
+.footer {
+  background: var(--forest-deep);
+  color: rgba(245, 239, 228, 0.7);
+  padding: 72px 0 30px;
+  border-top: 1px solid rgba(201, 169, 97, 0.15);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 60px;
+}
+@media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+@media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 28px; color: var(--cream-warm);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.footer-about { font-size: 13.5px; line-height: 1.8; max-width: 320px; font-weight: 300; }
+.footer-title {
+  font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.footer ul li { margin-bottom: 10px; }
+.footer ul li a {
+  font-size: 13.5px;
+  color: rgba(245, 239, 228, 0.65);
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.footer ul li a:hover { color: var(--gold-soft); }
+.footer-bottom {
+  padding-top: 30px;
+  border-top: 1px solid rgba(201, 169, 97, 0.15);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+  font-size: 12px; color: rgba(245, 239, 228, 0.45);
+}
+.footer-bottom a { color: rgba(245, 239, 228, 0.55); }
+
+/* ========== ANIMATIONS ========== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.stagger-1 { transition-delay: 0.08s; }
+.stagger-2 { transition-delay: 0.16s; }
+.stagger-3 { transition-delay: 0.24s; }
+.stagger-4 { transition-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fade-up { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
 </style>
 </head>
+
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">🍵 Premium Selection</div>
-  <h1>Japanese Tea Catalogue</h1>
-  <p>Sourced from the finest tea-growing regions of Japan — Kyoto, Shizuoka &amp; Kagoshima. All products comply with EU regulations.</p>
-  <div class="hero-divider"></div>
-</div>
-
-<!-- PRODUCT CARDS -->
-<div class="container">
-  <div class="section">
-    <div class="section-title">Our Products</div>
-    <div class="section-sub">Hand-selected teas from Japan's most celebrated growing regions</div>
-    <div class="cards-grid">
-
-      <!-- MATCHA A -->
-      <div class="card">
-        <div class="card-img">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/f45c81f75901043e281dbb94617d7610194c6925.jpg" alt="Matcha"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Matcha</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Matcha A</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
-            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
-            <div class="meta-row"><span class="meta-icon">❄️</span><span class="meta-label">Storage</span> Store refrigerated</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-          <div class="supply-bar-wrap">
-            <div class="supply-label">Max Supply: 4,000 kg</div>
-            <div class="supply-bar"><div class="supply-fill" style="width:100%"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MATCHA B -->
-      <div class="card">
-        <div class="card-img">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/536426f7d62243537afbdd27b434d4dc03cca660.jpg" alt="Matcha B"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Matcha</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Matcha B</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
-            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-          <div class="supply-bar-wrap">
-            <div class="supply-label">Max Supply: 100 kg</div>
-            <div class="supply-bar"><div class="supply-fill" style="width:2.5%"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MATCHA C -->
-      <div class="card">
-        <div class="card-img">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/f45c81f75901043e281dbb94617d7610194c6925.jpg" alt="Matcha C"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Matcha</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Matcha C</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Shizuoka</div>
-            <div class="meta-row"><span class="meta-icon">🍂</span><span class="meta-label">Harvest</span> Summer / Autumn</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-          <div class="supply-bar-wrap">
-            <div class="supply-label">Max Supply: 3,000 kg</div>
-            <div class="supply-bar"><div class="supply-fill" style="width:75%"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- HOJICHA POWDER -->
-      <div class="card">
-        <div class="card-img">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/9487f354dc4988d071c6327dfdc6ff15d1ebb08c.jpg" alt="Hojicha Powder"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Hojicha</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Hojicha Powder</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
-            <div class="meta-row"><span class="meta-icon">🔄</span><span class="meta-label">Harvest</span> Blended</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-        </div>
-      </div>
-
-      <!-- HOJICHA -->
-      <div class="card">
-        <div class="card-img">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/98082c1d87e1fa22d3e0957a1075d7ed495eb98c.jpg" alt="Hojicha"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Hojicha</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Hojicha</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
-            <div class="meta-row"><span class="meta-icon">🔄</span><span class="meta-label">Harvest</span> Blended</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-        </div>
-      </div>
-
-      <!-- GENMAICHA -->
-      <div class="card">
-        <div class="card-img">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/14e4dd629b7b9877601738981dad6b8e6953b87d.jpg" alt="Genmaicha"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Genmaicha</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Genmaicha</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
-            <div class="meta-row"><span class="meta-icon">🔄</span><span class="meta-label">Harvest</span> Blended</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-        </div>
-      </div>
-
-      <!-- SENCHA A -->
-      <div class="card">
-        <div class="card-img">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/65daca117204434d1b12933731e0cd7eb53bd275.jpg" alt="Sencha A"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Sencha · Green Tea</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Sencha A</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kagoshima</div>
-            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-        </div>
-      </div>
-
-      <!-- SENCHA B -->
-      <div class="card">
-        <div class="card-img">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/0d8fe2e45598843e5ffaa9384fa36048ef004a1e.jpg" alt="Sencha B"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Sencha · Green Tea</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Sencha B</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kyoto</div>
-            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-        </div>
-      </div>
-
-      <!-- YUZU TEA -->
-      <div class="card">
-        <div class="card-img">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/37b6509ef6960a6e2b7c72dfe8f1579669e9daba.jpg" alt="Yuzu Tea"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Yuzu</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Yuzu Tea</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Shizuoka</div>
-            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-          <span class="badge-allergen">⚠ Contains: Yuzu Skin</span>
-        </div>
-      </div>
-
-      <!-- JAPANESE BLACK TEA A -->
-      <div class="card">
-        <div class="card-img" style="background: linear-gradient(135deg,#3b1a0a,#6b3520);">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/f5acd689ab7764e207de8bbfba2e910639f9aafc.jpg" alt="Japanese Black Tea A" style="opacity:0.7"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Black Tea</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Japanese Black Tea A</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Kagoshima</div>
-            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-        </div>
-      </div>
-
-      <!-- JAPANESE BLACK TEA B -->
-      <div class="card">
-        <div class="card-img" style="background: linear-gradient(135deg,#3b1a0a,#6b3520);">
-          <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/f5acd689ab7764e207de8bbfba2e910639f9aafc.jpg" alt="Japanese Black Tea B" style="opacity:0.65"/>
-          <div class="card-img-overlay"></div>
-          <span class="card-category">Black Tea</span>
-        </div>
-        <div class="card-body">
-          <div class="card-title">Japanese Black Tea B</div>
-          <div class="card-meta">
-            <div class="meta-row"><span class="meta-icon">📍</span><span class="meta-label">Origin</span> Shizuoka</div>
-            <div class="meta-row"><span class="meta-icon">🌸</span><span class="meta-label">Harvest</span> Spring</div>
-            <div class="meta-row"><span class="meta-icon">🌑</span><span class="meta-label">Storage</span> Cool, dark place</div>
-          </div>
-          <span class="badge-eu">✓ EU Compliant</span>
-        </div>
-      </div>
-
+<!-- ══════════════════════════════  NAVIGATION  ══════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <div class="logo" data-page="home">
+      <div class="logo-mark">桜</div>
+      <div class="logo-text">Sakura Leaf<span>Tea Merchants</span></div>
     </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a data-page="home" data-section="hero">Home</a></li>
+      <li><a data-page="home" data-section="catalogue">Teas</a></li>
+      <li><a data-page="home" data-section="about">About</a></li>
+      <li><a class="nav-cta" data-page="bulk">Bulk Orders</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+                               HOME PAGE
+     ══════════════════════════════════════════════════════════════════════════ -->
+<main id="page-home" class="page active">
+
+  <!-- ══════════════  HERO  ══════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-kanji">茶</div>
+    <div class="hero-leaf">s</div>
+    <div class="container">
+      <div class="hero-inner fade-up visible">
+        <span class="eyebrow light">Est. Sourcing from Japan</span>
+        <h1>Eleven teas, <em>three regions</em>, one unbroken tradition.</h1>
+        <p class="hero-sub">Sakura Leaf is a specialist importer and exporter of premium Japanese tea — from the ceremonial matcha of Uji to the sun-drenched sencha of Kagoshima. Every lot is EU-regulation compliant and selected with the patience of the gardens that grew it.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" data-page="home" data-section="catalogue">
+            Explore the Catalogue <i data-lucide="arrow-right"></i>
+          </a>
+          <a class="btn btn-ghost" data-page="bulk">
+            Bulk &amp; Wholesale
+          </a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item"><strong>11</strong><span>Tea Lines</span></div>
+          <div class="hero-meta-item"><strong>3</strong><span>Prefectures</span></div>
+          <div class="hero-meta-item"><strong>100%</strong><span>EU Compliant</span></div>
+          <div class="hero-meta-item"><strong>20kg</strong><span>Min. Bulk Order</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  REGIONS STRIP  ══════════════ -->
+  <section class="regions">
+    <div class="container">
+      <div class="regions-grid">
+        <div class="region fade-up">
+          <div class="region-name">Kyoto <span class="region-jp">京都</span></div>
+          <div class="region-desc">The spiritual home of matcha. Uji's cool mists and shaded gardens have produced Japan's most revered ceremonial teas for over eight centuries.</div>
+        </div>
+        <div class="region fade-up stagger-1">
+          <div class="region-name">Shizuoka <span class="region-jp">静岡</span></div>
+          <div class="region-desc">Japan's largest tea-growing prefecture. Rolling hillsides beneath Mt. Fuji produce refined sencha, culinary matcha, and aromatic black teas.</div>
+        </div>
+        <div class="region fade-up stagger-2">
+          <div class="region-name">Kagoshima <span class="region-jp">鹿児島</span></div>
+          <div class="region-desc">Southern Kyushu's warm climate yields Japan's earliest spring harvests — bright, grassy senchas and honeyed wakoucha black teas.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  PRODUCT CATALOGUE  ══════════════ -->
+  <section class="section products" id="catalogue">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">The Catalogue</span>
+        <h2 class="section-title">Eleven lines, each with a <em>distinct character</em>.</h2>
+        <p class="section-lead">Every tea in the Sakura Leaf catalogue is traceable to a single prefecture, harvested at a specific crop season, and fully compliant with EU food regulations. Storage and shelf-life are stated on every lot.</p>
+      </div>
+
+      <div class="products-grid" id="productsGrid"><!-- populated by JS --></div>
+    </div>
+  </section>
+
+  <!-- ══════════════  ABOUT / VALUES  ══════════════ -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="fade-up">
+          <span class="eyebrow light">About Sakura Leaf</span>
+          <h2 class="section-title">From tea garden to <em>European table</em>, without compromise.</h2>
+          <p class="section-lead">We operate as a direct-source merchant between specialist Japanese producers and European importers, café groups, confectioners and specialty retailers. Every tea is selected personally each season, tested to EU pesticide-residue and heavy-metal standards, and shipped with full documentation.</p>
+          <br/>
+          <p class="section-lead">Our scale is intentionally small. Matcha B, for example, is capped at 100kg per season because we refuse to blend it down. It is the tea we like best.</p>
+        </div>
+        <div class="about-values fade-up stagger-1">
+          <div class="value">
+            <div class="value-icon"><i data-lucide="map-pin"></i></div>
+            <div><div class="value-title">Single-origin Sourcing</div><div class="value-text">Every lot traceable to Kyoto, Shizuoka, or Kagoshima — no anonymous blends, no repackaged bulk.</div></div>
+          </div>
+          <div class="value">
+            <div class="value-icon"><i data-lucide="shield-check"></i></div>
+            <div><div class="value-title">EU Regulation Compliant</div><div class="value-text">All products meet European Union food safety, pesticide-residue and labelling regulations.</div></div>
+          </div>
+          <div class="value">
+            <div class="value-icon"><i data-lucide="calendar-days"></i></div>
+            <div><div class="value-title">12-Month Shelf Life</div><div class="value-text">Best-before one year from production. Storage recommendations stated on every product.</div></div>
+          </div>
+          <div class="value">
+            <div class="value-icon"><i data-lucide="ship"></i></div>
+            <div><div class="value-title">Documented Export</div><div class="value-text">Phytosanitary certificates, certificates of analysis and origin supplied with every shipment.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  BULK CTA  ══════════════ -->
+  <section class="bulk-cta">
+    <div class="container">
+      <span class="eyebrow center">For Importers &amp; Distributors</span>
+      <h2 class="section-title" style="margin: 18px auto 20px; max-width: 800px;">Ordering wholesale? <em>Request a bulk quotation.</em></h2>
+      <p class="section-lead" style="max-width: 560px; margin: 0 auto 36px;">Minimum order 20kg. Full supply transparency, consolidated shipping, and documentation handled end-to-end.</p>
+      <a class="btn btn-solid" data-page="bulk">
+        Open the Bulk Portal <i data-lucide="arrow-right"></i>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+                              BULK / IMPORTER PAGE
+     ══════════════════════════════════════════════════════════════════════════ -->
+<main id="page-bulk" class="page">
+
+  <!-- ══════════════  BULK HERO  ══════════════ -->
+  <section class="bulk-hero">
+    <div class="container fade-up visible">
+      <span class="eyebrow light">Wholesale &amp; Distribution</span>
+      <h1>Bulk supply, <em>direct from the source</em>.</h1>
+      <p>For EU importers, café groups, and specialty distributors. Submit an enquiry below — we respond within two business days with pricing, lead times and sample options.</p>
+    </div>
+  </section>
+
+  <!-- Minimum order notice -->
+  <div class="min-order">
+    Minimum Order Quantity · <strong>20 kg</strong> per product line
   </div>
 
-  <!-- FULL DATA TABLE -->
-  <div class="table-section">
-    <div class="section-title">Full Product Specifications</div>
-    <div class="section-sub">Complete technical data for all 11 product lines</div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Specification</th>
-            <th>Matcha A</th>
-            <th>Matcha B</th>
-            <th>Matcha C</th>
-            <th>Hojicha Powder</th>
-            <th>Hojicha</th>
-            <th>Genmaicha</th>
-            <th>Sencha A</th>
-            <th>Sencha B</th>
-            <th>Yuzu Tea</th>
-            <th>Black Tea A</th>
-            <th>Black Tea B</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="row-label">📍 Origin</td>
-            <td>Kyoto</td><td>Kyoto</td><td>Shizuoka</td>
-            <td>Kyoto</td><td>Kyoto</td><td>Kyoto</td>
-            <td>Kagoshima</td><td>Kyoto</td><td>Shizuoka</td>
-            <td>Kagoshima</td><td>Shizuoka</td>
-          </tr>
-          <tr>
-            <td class="row-label">🌸 Harvest / Crop</td>
-            <td>Spring</td><td>Spring</td><td>Summer / Autumn</td>
-            <td>Blended</td><td>Blended</td><td>Blended</td>
-            <td>Spring</td><td>Spring</td><td>Spring</td>
-            <td>Spring</td><td>Spring</td>
-          </tr>
-          <tr>
-            <td class="row-label">✅ Certification</td>
-            <td class="td-eu" colspan="11">EU Regulation Compliant — all product lines</td>
-          </tr>
-          <tr>
-            <td class="row-label">⚠ Allergens</td>
-            <td class="td-none">None</td><td class="td-none">None</td><td class="td-none">None</td>
-            <td class="td-none">None</td><td class="td-none">None</td><td class="td-none">None</td>
-            <td class="td-none">None</td><td class="td-none">None</td>
-            <td><strong>Yuzu skin</strong></td>
-            <td class="td-none">None</td><td class="td-none">None</td>
-          </tr>
-          <tr>
-            <td class="row-label">📅 Best Before</td>
-            <td colspan="11">1 year from production date</td>
-          </tr>
-          <tr>
-            <td class="row-label">🧊 Storage</td>
-            <td><strong>Refrigerated</strong></td>
-            <td colspan="10">Cool, dark place</td>
-          </tr>
-          <tr>
-            <td class="row-label">📦 Max Supply</td>
-            <td>4,000 kg</td><td>100 kg</td><td>3,000 kg</td>
-            <td>—</td><td>—</td><td>—</td>
-            <td>—</td><td>—</td><td>—</td>
-            <td>—</td><td>—</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- ══════════════  ENQUIRY FORM  ══════════════ -->
+  <section class="form-section">
+    <div class="container">
+      <div class="form-wrap">
+        <aside class="form-aside fade-up">
+          <span class="eyebrow">Bulk Enquiry</span>
+          <h2 class="section-title" style="font-size: 2.2rem; margin: 14px 0 18px;">Tell us what <em>you need.</em></h2>
+          <p>Share your product preferences, target volumes, and destination country. Our export desk will respond with a tailored quotation, current stock availability, and documentation samples.</p>
+          <div class="contact-line"><i data-lucide="mail"></i> wholesale@sakuraleaf.jp</div>
+          <div class="contact-line"><i data-lucide="phone"></i> +81 (0)75 000 0000</div>
+          <div class="contact-line"><i data-lucide="clock"></i> Response within 2 business days</div>
+        </aside>
+
+        <form class="form fade-up stagger-1" id="bulkForm" novalidate>
+          <div class="success-msg" id="successMsg">
+            <i data-lucide="check-circle-2"></i>
+            <div>Thank you — your enquiry has been received. Our team will respond shortly.</div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="fName">Full Name <span class="req">*</span></label>
+              <input type="text" id="fName" name="name" required placeholder="Jane Doe" />
+            </div>
+            <div class="form-row">
+              <label for="fCompany">Company <span class="req">*</span></label>
+              <input type="text" id="fCompany" name="company" required placeholder="Company Ltd." />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="fEmail">Email <span class="req">*</span></label>
+              <input type="email" id="fEmail" name="email" required placeholder="you@company.com" />
+            </div>
+            <div class="form-row">
+              <label for="fCountry">Country <span class="req">*</span></label>
+              <input type="text" id="fCountry" name="country" required placeholder="e.g. Germany" />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="fProduct">Product of Interest <span class="req">*</span></label>
+              <select id="fProduct" name="product" required>
+                <option value="">— Select a product —</option>
+                <option>Matcha A (Kyoto · Spring · Ceremonial)</option>
+                <option>Matcha B (Kyoto · Spring · Ceremonial, Limited)</option>
+                <option>Matcha C (Shizuoka · Summer/Autumn · Culinary)</option>
+                <option>Hojicha Powder (Kyoto)</option>
+                <option>Hojicha (Kyoto · Loose-Leaf)</option>
+                <option>Genmaicha (Kyoto)</option>
+                <option>Sencha A (Kagoshima · Spring)</option>
+                <option>Sencha B (Kyoto · Spring)</option>
+                <option>Yuzu Tea (Shizuoka · Spring)</option>
+                <option>Japanese Black Tea A — Wakoucha (Kagoshima · Spring)</option>
+                <option>Japanese Black Tea B — Wakoucha (Shizuoka · Spring)</option>
+                <option>Multiple / Mixed</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="fQty">Quantity (kg) <span class="req">*</span></label>
+              <input type="number" id="fQty" name="quantity" required min="20" placeholder="Min. 20" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="fMsg">Message</label>
+            <textarea id="fMsg" name="message" placeholder="Target delivery date, packaging preferences, end-use, sample requests…"></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Submit Enquiry <i data-lucide="send"></i>
+          </button>
+          <div class="form-note">We reply within two business days. Samples available on request.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  SUPPLY TABLE  ══════════════ -->
+  <section class="supply-section" id="supply">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">Supply Availability</span>
+        <h2 class="section-title">Annual <em>maximum supply</em> volumes.</h2>
+        <p class="section-lead">Where capped, our annual production ceilings for single-origin lots are stated below. Uncapped lines are available at larger volumes — request a quotation for specifics.</p>
+      </div>
+
+      <div class="supply-table-wrap fade-up">
+        <table class="supply-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Origin</th>
+              <th>Harvest</th>
+              <th>Maximum Supply</th>
+              <th style="width: 200px;">Capacity</th>
+            </tr>
+          </thead>
+          <tbody id="supplyTableBody"><!-- populated by JS --></tbody>
+        </table>
+        <div class="supply-table-mobile" id="supplyTableMobile"><!-- populated by JS --></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════  SHIPPING / IMPORT PROCESS  ══════════════ -->
+  <section class="process">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="eyebrow">Shipping &amp; Import</span>
+        <h2 class="section-title">A documented, <em>regulation-ready</em> export process.</h2>
+        <p class="section-lead">Every shipment leaves Japan with the paperwork needed to clear EU customs cleanly. Full documentation is available on request at the quotation stage.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="step fade-up">
+          <div class="step-num">01</div>
+          <div class="step-title">Enquiry &amp; Sample</div>
+          <div class="step-text">We respond to every enquiry within two business days with availability, pricing, and — on request — representative samples shipped to your address.</div>
+        </div>
+        <div class="step fade-up stagger-1">
+          <div class="step-num">02</div>
+          <div class="step-title">Quotation &amp; Contract</div>
+          <div class="step-text">Confirmed quotation with specifications, Incoterms, and lead time. All product lines are EU-regulation compliant; certificates provided at this stage.</div>
+        </div>
+        <div class="step fade-up stagger-2">
+          <div class="step-num">03</div>
+          <div class="step-title">Production &amp; QA</div>
+          <div class="step-text">Lot prepared, tested and packaged in Japan. Certificate of Analysis, phytosanitary certificate, and certificate of origin issued with each consignment.</div>
+        </div>
+        <div class="step fade-up stagger-3">
+          <div class="step-num">04</div>
+          <div class="step-title">Shipment &amp; Clearance</div>
+          <div class="step-text">Consolidated or dedicated sea or air freight. We work with your preferred customs broker, or recommend partners across major EU ports.</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 60px; padding: 36px 40px; background: var(--cream-warm); border-left: 3px solid var(--gold); border-radius: 4px;" class="fade-up">
+        <div style="font-family: var(--font-display); font-size: 22px; color: var(--forest-deep); margin-bottom: 10px; font-weight: 600;">Documentation available on request</div>
+        <div style="font-size: 14px; color: var(--ink-soft); line-height: 1.8; font-weight: 300;">
+          Certificate of Analysis (CoA) · Certificate of Origin · Phytosanitary Certificate · EU Food Compliance Declaration · Allergen Statement · Shelf-life &amp; Storage Specification · Packing List &amp; Commercial Invoice.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════════════════  FOOTER  ══════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Sakura Leaf 桜</div>
+        <p class="footer-about">Specialist importer &amp; exporter of premium Japanese tea. Kyoto · Shizuoka · Kagoshima. Serving EU café groups, importers and specialty retailers.</p>
+      </div>
+      <div>
+        <div class="footer-title">Catalogue</div>
+        <ul>
+          <li><a data-page="home" data-section="catalogue">All Teas</a></li>
+          <li><a data-page="home" data-section="catalogue">Matcha</a></li>
+          <li><a data-page="home" data-section="catalogue">Sencha &amp; Green</a></li>
+          <li><a data-page="home" data-section="catalogue">Hojicha &amp; Roasted</a></li>
+          <li><a data-page="home" data-section="catalogue">Wakoucha (Black)</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Wholesale</div>
+        <ul>
+          <li><a data-page="bulk">Bulk Enquiries</a></li>
+          <li><a data-page="bulk" data-section="supply">Supply Availability</a></li>
+          <li><a data-page="bulk">Shipping &amp; Import</a></li>
+          <li><a data-page="bulk">Documentation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Contact</div>
+        <ul>
+          <li>wholesale@sakuraleaf.jp</li>
+          <li>+81 (0)75 000 0000</li>
+          <li>Kyoto, Japan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="yr"></span> Sakura Leaf Tea Merchants. All products compliant with EU regulations.</div>
+      <div>Best before 1 year from production</div>
     </div>
   </div>
-</div>
+</footer>
 
-<!-- FOOTER -->
-<div class="footer">
-  <p>🍵 Japanese Tea Collection &nbsp;·&nbsp; <span>All Products EU Regulation Compliant</span> &nbsp;·&nbsp; Shelf Life: 1 Year</p>
-  <p style="margin-top:6px; opacity:0.5;">Kyoto &nbsp;·&nbsp; Shizuoka &nbsp;·&nbsp; Kagoshima</p>
-</div>
+<!-- ══════════════════════════════  SCRIPTS  ══════════════════════════════ -->
+<script>
+/* ─────────────────  PRODUCT DATA  ───────────────── */
+const PRODUCTS = [
+  {
+    name: 'Matcha A', jp: '抹茶 A', tone: 'matcha', glyph: 'M',
+    category: 'Matcha · Ceremonial',
+    origin: 'Kyoto', harvest: 'Spring', storage: 'Store refrigerated',
+    supply: 4000, allergens: null,
+    description: 'Uji in Kyoto is the spiritual home of matcha, with over eight centuries of cultivation behind it. Matcha A is a ceremonial-grade stone-ground powder from shade-grown tencha leaves, producing a vibrant emerald hue and the smooth umami profile suited to traditional tea ceremony (chanoyu).'
+  },
+  {
+    name: 'Matcha B', jp: '抹茶 B', tone: 'matcha', glyph: 'M',
+    category: 'Matcha · Limited Reserve',
+    origin: 'Kyoto', harvest: 'Spring', storage: 'Cool, dark place',
+    supply: 100, allergens: null,
+    description: 'A limited-production ceremonial matcha from a single Uji cultivar, capped at 100kg per season to preserve its uncompromised character. Its delicate balance of natural sweetness and umami makes it prized by tea masters for koicha (thick-tea) preparations.'
+  },
+  {
+    name: 'Matcha C', jp: '抹茶 C', tone: 'matcha', glyph: 'M',
+    category: 'Matcha · Culinary',
+    origin: 'Shizuoka', harvest: 'Summer / Autumn', storage: 'Cool, dark place',
+    supply: 3000, allergens: null,
+    description: 'Harvested in the later growing seasons across Shizuoka — Japan\'s largest tea-producing prefecture — Matcha C is a culinary-grade powder built for versatility in lattes, baking, ice cream and confectionery. Its bolder, slightly astringent character stands up well to dairy and sugar without losing its green-tea integrity.'
+  },
+  {
+    name: 'Hojicha Powder', jp: 'ほうじ茶粉末', tone: 'hojicha', glyph: 'H',
+    category: 'Hojicha · Roasted Green',
+    origin: 'Kyoto', harvest: 'Blended', storage: 'Cool, dark place',
+    supply: null, allergens: null,
+    description: 'Hojicha is made by roasting green tea leaves, transforming the grassy profile into warm, toasty, nutty flavours with notably low caffeine. The powdered form works beautifully in lattes, ice cream, baked goods and desserts — and its low-caffeine character makes it a favourite for children and evening drinking.'
+  },
+  {
+    name: 'Hojicha', jp: 'ほうじ茶', tone: 'hojicha', glyph: 'H',
+    category: 'Hojicha · Loose Leaf',
+    origin: 'Kyoto', harvest: 'Blended', storage: 'Cool, dark place',
+    supply: null, allergens: null,
+    description: 'Our loose-leaf Hojicha is roasted in the traditional Kyoto style, producing a reddish-amber infusion with a deep roasted aroma and a remarkably smooth, low-tannin taste. It is commonly served after meals in Japanese homes thanks to its mild, caffeine-light profile.'
+  },
+  {
+    name: 'Genmaicha', jp: '玄米茶', tone: 'genmaicha', glyph: 'G',
+    category: 'Genmaicha · Brown Rice Blend',
+    origin: 'Kyoto', harvest: 'Blended', storage: 'Cool, dark place',
+    supply: null, allergens: null,
+    description: 'Often called "popcorn tea," genmaicha blends sencha green tea with roasted and popped brown rice, producing a comforting, nutty, savoury cup. Originating as a way to stretch precious tea with grain, it is now a beloved everyday tea in Japan and a natural companion to rice-based meals.'
+  },
+  {
+    name: 'Sencha A', jp: '煎茶 A', tone: 'sencha', glyph: 'S',
+    category: 'Sencha · Green Tea',
+    origin: 'Kagoshima', harvest: 'Spring', storage: 'Cool, dark place',
+    supply: null, allergens: null,
+    description: 'Kagoshima, on Japan\'s southern island of Kyushu, enjoys a warmer climate that produces the earliest sencha of the year. Our Spring Sencha A delivers a bright, refreshing, grassy cup with moderate umami — an approachable daily-drinking tea that also performs beautifully cold-brewed.'
+  },
+  {
+    name: 'Sencha B', jp: '煎茶 B', tone: 'sencha', glyph: 'S',
+    category: 'Sencha · Green Tea',
+    origin: 'Kyoto', harvest: 'Spring', storage: 'Cool, dark place',
+    supply: null, allergens: null,
+    description: 'Kyoto sencha carries a more refined, mellow profile drawn from the prefecture\'s cooler mountain terroir, with gentle sweetness and a clean finish. This first-flush spring harvest is steamed briefly to preserve delicate aromatic compounds — an elegant choice for connoisseurs.'
+  },
+  {
+    name: 'Yuzu Tea', jp: '柚子茶', tone: 'yuzu', glyph: 'Y',
+    category: 'Yuzu · Citrus Infusion',
+    origin: 'Shizuoka', harvest: 'Spring', storage: 'Cool, dark place',
+    supply: null, allergens: 'Yuzu skin',
+    description: 'A fragrant infusion combining Japanese green tea with yuzu — a distinctive citrus cultivated in the mountain regions of Japan — offering a bright, floral, citrus-forward cup. It performs equally well hot or iced and pairs naturally with light desserts and summer dining.'
+  },
+  {
+    name: 'Japanese Black Tea A', jp: '和紅茶 A', tone: 'black', glyph: 'B',
+    category: 'Wakoucha · Japanese Black',
+    origin: 'Kagoshima', harvest: 'Spring', storage: 'Cool, dark place',
+    supply: null, allergens: null,
+    description: 'Known in Japan as wakoucha, Japanese black tea is fully oxidised green-tea-cultivar leaf, producing a naturally sweet, low-astringency brew quite unlike Indian or Ceylon styles. Kagoshima\'s early-season harvest yields a mellow, honey-like body that drinks beautifully neat or with a splash of milk.'
+  },
+  {
+    name: 'Japanese Black Tea B', jp: '和紅茶 B', tone: 'black', glyph: 'B',
+    category: 'Wakoucha · Japanese Black',
+    origin: 'Shizuoka', harvest: 'Spring', storage: 'Cool, dark place',
+    supply: null, allergens: null,
+    description: 'Crafted in Shizuoka using local sencha cultivars, this wakoucha offers a brighter, more floral profile with hints of stone fruit and a silky finish. A versatile tea equally suited to an afternoon pour or cold-brewed for summer iced service.'
+  }
+];
+
+const MAX_SUPPLY_CAP = 4000;
+
+/* ─────────────────  RENDER PRODUCTS  ───────────────── */
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = PRODUCTS.map((p, i) => {
+    const staggerClass = `stagger-${(i % 4) + 1}`;
+    const supplyChip = p.supply ? `<span class="supply-chip">Max ${p.supply.toLocaleString()} kg / yr</span>` : '';
+    const allergenBadge = p.allergens
+      ? `<span class="badge badge-allergen"><i data-lucide="alert-triangle"></i> Allergen: ${p.allergens}</span>`
+      : '';
+
+    return `
+      <article class="product-card fade-up ${staggerClass}" data-tone="${p.tone}">
+        <div class="product-img">
+          <span class="category-chip">${p.category}</span>
+          ${supplyChip}
+          <div class="tea-visual"><span class="tea-glyph">${p.glyph}</span></div>
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">${p.name}</h3>
+          <div class="product-jp">${p.jp}</div>
+          <p class="product-desc">${p.description}</p>
+          <div class="product-attrs">
+            <div class="attr"><i data-lucide="map-pin"></i><span class="attr-label">Origin</span><span class="attr-value">${p.origin}</span></div>
+            <div class="attr"><i data-lucide="leaf"></i><span class="attr-label">Harvest</span><span class="attr-value">${p.harvest}</span></div>
+            <div class="attr"><i data-lucide="snowflake"></i><span class="attr-label">Storage</span><span class="attr-value">${p.storage}</span></div>
+          </div>
+          <div class="product-badges">
+            <span class="badge badge-eu"><i data-lucide="check"></i> EU Compliant</span>
+            ${allergenBadge}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+/* ─────────────────  RENDER SUPPLY TABLE  ───────────────── */
+function renderSupplyTable() {
+  const tbody = document.getElementById('supplyTableBody');
+  const mobile = document.getElementById('supplyTableMobile');
+
+  tbody.innerHTML = PRODUCTS.map(p => {
+    const qty = p.supply ? `<span class="supply-qty">${p.supply.toLocaleString()} kg</span>` : '<span class="supply-na">Capacity on request</span>';
+    const bar = p.supply
+      ? `<div class="supply-bar-bg"><div class="supply-bar-fill" style="width:${(p.supply / MAX_SUPPLY_CAP) * 100}%"></div></div>`
+      : '<span class="supply-na">—</span>';
+    return `
+      <tr>
+        <td><div class="supply-name">${p.name}</div><div style="font-size:12px;color:var(--ink-muted);margin-top:2px;">${p.category}</div></td>
+        <td>${p.origin}</td>
+        <td>${p.harvest}</td>
+        <td>${qty}</td>
+        <td>${bar}</td>
+      </tr>
+    `;
+  }).join('');
+
+  mobile.innerHTML = PRODUCTS.map(p => {
+    const qty = p.supply ? `${p.supply.toLocaleString()} kg` : 'On request';
+    return `
+      <div class="supply-card">
+        <div class="supply-card-name">${p.name}</div>
+        <div class="supply-card-origin">${p.origin} · ${p.harvest}</div>
+        <div class="supply-card-qty">${qty}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ─────────────────  PAGE ROUTING  ───────────────── */
+function showPage(pageId, sectionId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById('page-' + pageId);
+  if (page) page.classList.add('active');
+
+  // Update nav active state
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const activeLink = document.querySelector(`.nav-links a[data-page="${pageId}"]${sectionId ? `[data-section="${sectionId}"]` : ''}`);
+  if (activeLink) activeLink.classList.add('active');
+
+  // Close mobile nav
+  document.getElementById('navLinks').classList.remove('open');
+
+  // Scroll behavior
+  if (sectionId) {
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 70;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 80);
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Re-trigger observers for newly shown page
+  setTimeout(triggerFadeUps, 100);
+
+  // Re-init lucide icons in case new content was rendered
+  if (window.lucide) window.lucide.createIcons();
+}
+
+/* ─────────────────  NAV HANDLING  ───────────────── */
+function initNav() {
+  // Nav link clicks
+  document.querySelectorAll('[data-page]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const page = el.dataset.page;
+      const section = el.dataset.section || null;
+      showPage(page, section);
+    });
+  });
+
+  // Mobile toggle
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+  // Scrolled style
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if (window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+/* ─────────────────  FADE-UP OBSERVER  ───────────────── */
+let fadeObserver;
+function initFadeObserver() {
+  fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+  triggerFadeUps();
+}
+function triggerFadeUps() {
+  document.querySelectorAll('.fade-up:not(.visible)').forEach(el => {
+    // Only observe if visible (not in hidden page)
+    const parentPage = el.closest('.page');
+    if (!parentPage || parentPage.classList.contains('active')) {
+      fadeObserver.observe(el);
+    }
+  });
+}
+
+/* ─────────────────  FORM HANDLING  ───────────────── */
+function initForm() {
+  const form = document.getElementById('bulkForm');
+  const success = document.getElementById('successMsg');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    const qty = parseFloat(document.getElementById('fQty').value);
+    if (qty < 20) {
+      alert('Minimum order quantity is 20 kg. Please adjust your quantity.');
+      return;
+    }
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Simulate submission
+    success.classList.add('show');
+    form.reset();
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setTimeout(() => success.classList.remove('show'), 8000);
+  });
+}
+
+/* ─────────────────  INIT  ───────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  renderProducts();
+  renderSupplyTable();
+  initNav();
+  initFadeObserver();
+  initForm();
+
+  // Init lucide icons after DOM is populated
+  if (window.lucide) {
+    window.lucide.createIcons();
+  } else {
+    // Lucide loads async with defer; retry after script loads
+    const iv = setInterval(() => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+        clearInterval(iv);
+      }
+    }, 100);
+    setTimeout(() => clearInterval(iv), 5000);
+  }
+});
+</script>
 
 </body>
 </html>
